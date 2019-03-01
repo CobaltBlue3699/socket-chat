@@ -24,8 +24,6 @@ jobs:
     working_directory: ~/socket-chat/server
 
     steps:
-      - run: echo WORKING_DIRECTORY -> $CIRCLE_WORKING_DIRECTORY
-
       - checkout
 
       # Download and cache dependencies
