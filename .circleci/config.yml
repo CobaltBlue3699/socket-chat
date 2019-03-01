@@ -23,36 +23,27 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          name: (repo) 
-          command: ls
-      - run:
-          name: cd server
-          command: cd server
-      - run:
-          name: (server) 
-          command: ls
       # Download and cache dependencies
-      - restore_cache:
-          name: (server) Download Dependencies
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      # - restore_cache:
+      #     name: (server) Download Dependencies
+      #     keys:
+      #       - v1-dependencies-{{ checksum "package.json" }}
+      #       # fallback to using the latest cache if no exact match is found
+      #       - v1-dependencies-
 
       - run:
           name: (server) Run npm install
-          command: npm install
+          command: cd server && npm install
 
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+      # - save_cache:
+      #     paths:
+      #       - node_modules
+      #     key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
       - run:
           name: (server) run tests!
-          command: npm run test
+          command: cd server && npm run test
 
   build-test-client:
     docker:
@@ -66,34 +57,26 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          name: (repo) 
-          command: ls
-      - run:
-          name: cd client
-          command: cd server
-      - run:
-          name: (client) 
-          command: ls
+
       # Download and cache dependencies
-      - restore_cache:
-          name: (client) Download Dependencies
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      # - restore_cache:
+      #     name: (client) Download Dependencies
+      #     keys:
+      #       - v1-dependencies-{{ checksum "package.json" }}
+      #       # fallback to using the latest cache if no exact match is found
+      #       - v1-dependencies-
 
       - run:
           name: (client) Run npm install
-          command: npm install
+          command: cd client && npm install
 
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+      # - save_cache:
+      #     paths:
+      #       - node_modules
+      #     key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
       - run:
-          name: (server) run tests!
-          command: npm run test
+          name: (client) run tests!
+          command: cd client && npm run test
     
