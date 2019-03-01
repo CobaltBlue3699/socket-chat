@@ -24,6 +24,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: (repo) 
+          command: ls
+      - run:
           name: cd server
           command: cd server
       - run:
@@ -63,6 +66,9 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: (repo) 
+          command: ls
       - run:
           name: cd client
           command: cd server
