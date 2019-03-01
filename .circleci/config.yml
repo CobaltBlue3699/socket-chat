@@ -25,6 +25,8 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          command: ls /home/circleci/socket-chat/server/
 
       # Download and cache dependencies
       - restore_cache:
@@ -62,7 +64,8 @@ jobs:
 
     steps:
       - checkout
-
+      - run:
+          command: ls /home/circleci/socket-chat/client/
       # Download and cache dependencies
       - restore_cache:
           name: (client) Download Dependencies
