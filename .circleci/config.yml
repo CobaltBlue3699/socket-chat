@@ -21,13 +21,14 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/socket-chat/server
-
     steps:
       - checkout
       - run:
-          command: ls /home/circleci/socket-chat/server/
-
+          name: cd server
+          command: cd server
+      - run:
+          name: (server) 
+          command: ls
       # Download and cache dependencies
       - restore_cache:
           name: (server) Download Dependencies
@@ -60,12 +61,14 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/socket-chat/client
-
     steps:
       - checkout
       - run:
-          command: ls /home/circleci/socket-chat/client/
+          name: cd client
+          command: cd server
+      - run:
+          name: (client) 
+          command: ls
       # Download and cache dependencies
       - restore_cache:
           name: (client) Download Dependencies
